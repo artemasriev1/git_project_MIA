@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+outputs/**/*.json
+!outputs/.gitkeep
+.ipynb_checkpoints/
+outputs/evaluation.json
+.idea/
+.DS_Store
