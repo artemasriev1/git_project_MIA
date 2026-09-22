@@ -32,6 +32,7 @@ We thought about running a model locally with Ollama, which would have skipped t
 - `data/cvs/` the test CVs, `data/ground_truth/` the correct answers written by hand
 - `outputs/` what the model produced
 - `docs/` our notes: why each prompt, what breaks, and what we will talk about at the oral
+- CV_Demo & Elise & Alvaro pdf's are all test pdf's for the engine.
 
 ## Result in two lines
 
