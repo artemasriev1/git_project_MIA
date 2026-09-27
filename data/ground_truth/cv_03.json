@@ -1,0 +1,16 @@
+{
+  "full_name": "Priya Nair",
+  "email": null,
+  "phone": null,
+  "location": "Bangalore",
+  "years_of_experience": null,
+  "skills": ["Figma", "Protopie", "Notion", "HTML", "CSS"],
+  "experience": [
+    {"company": "Swiggy", "title": "Product Designer", "start": "2022", "end": "present", "highlights": ["Owned the checkout redesign (conversion +11%)"]},
+    {"company": null, "title": "UX Designer", "start": "2020", "end": "2022", "highlights": ["Designed onboarding for a lending app"]},
+    {"company": "Zomato", "title": "Design intern", "start": "2019", "end": "2019", "highlights": []}
+  ],
+  "education": [{"institution": "NID Ahmedabad", "degree": "B.Des Interaction Design", "year": 2020}],
+  "languages": [],
+  "missing_fields": ["email", "phone", "years_of_experience", "languages"]
+}

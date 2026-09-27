@@ -1,0 +1,16 @@
+Théo Lambert
+theo.lambert@example.fr
+
+Développeur backend, 6 ans d'expérience, basé à Lyon.
+
+Expérience
+2021 – aujourd'hui : Ingénieur logiciel senior, Doctolib (Paris, télétravail)
+  Conception d'API Ruby on Rails, migration d'un monolithe vers des services, mentorat de 3 juniors.
+2018 – 2021 : Développeur backend, OVHcloud (Lyon)
+  Python, Django, PostgreSQL. Mise en place de la CI GitLab.
+
+Formation
+2018 : Diplôme d'ingénieur, INSA Lyon (informatique)
+
+Compétences : Ruby, Rails, Python, Django, PostgreSQL, Docker, GitLab CI, Kubernetes
+Langues : français (langue maternelle), anglais (courant)

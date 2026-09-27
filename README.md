@@ -16,7 +16,9 @@ Without this, nothing runs. It is the only install you need.
 cp .env.example .env        # then paste the API key inside
 python -m src.extract data/cvs/cv_01.txt
 python -m src.extract data/cvs/ --prompt few_shot
+python -m src.extract data/pdf/          # PDF CVs work too
 python -m src.evaluate
+pytest                                   # unit tests, no API key needed
 ```
 
 No key? `CV2JSON_MOCK=1 python -m src.extract data/cvs/` replays saved responses, handy for testing without paying.
@@ -28,11 +30,14 @@ We thought about running a model locally with Ollama, which would have skipped t
 ## What is where
 
 - `src/` the code (API call with retry, JSON validation, evaluation)
+- `tests/` the pytest suite
 - `prompts/` the prompts, one file per variant
-- `data/cvs/` the test CVs, `data/ground_truth/` the correct answers written by hand
+- `data/cvs/` the test CVs as text, `data/ground_truth/` the correct answers written by hand
+- `data/pdf/` sample PDF CVs (fictive) to test PDF input
+- `data/mock/` saved responses for running without an API key
 - `outputs/` what the model produced
 - `docs/` our notes: why each prompt, what breaks, and what we will talk about at the oral
-- CV_Demo & Elise & Alvaro pdf's are all test pdf's for the engine.
+- `scripts/` helper scripts, `notebooks/` exploration only
 
 ## Result in two lines
 

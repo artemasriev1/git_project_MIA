@@ -1,0 +1,14 @@
+{
+  "full_name": "Elena Rossi",
+  "email": "elena.rossi@example.it",
+  "phone": null,
+  "location": "Milan",
+  "years_of_experience": 1,
+  "skills": ["Excel", "Zucchetti", "SAP"],
+  "experience": [
+    {"company": "Studio Bianchi", "title": "Accounting assistant", "start": "2024", "end": "present", "highlights": ["Bookkeeping, VAT returns, monthly closings in Zucchetti."]}
+  ],
+  "education": [{"institution": "Università Bocconi", "degree": "Laurea triennale in Economia Aziendale", "year": 2023}],
+  "languages": [{"language": "Italian", "level": "native"}, {"language": "English", "level": "B2"}],
+  "missing_fields": ["phone"]
+}

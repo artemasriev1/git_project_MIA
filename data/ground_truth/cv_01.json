@@ -1,0 +1,18 @@
+{
+  "full_name": "Marta Kowalski",
+  "email": "marta.kowalski@example.com",
+  "phone": "+48 600 123 456",
+  "location": "Warsaw, Poland",
+  "years_of_experience": 4,
+  "skills": ["SQL", "Python", "pandas", "Power BI", "Excel", "SAS", "BigQuery", "dbt"],
+  "experience": [
+    {"company": "Allegro", "title": "Data Analyst", "start": "2022-03", "end": "present", "highlights": ["Built the returns-forecasting dashboard in Power BI, cutting weekly reporting time from 6h to 40min", "Wrote SQL pipelines on BigQuery for the logistics team"]},
+    {"company": "PKO Bank Polski", "title": "Junior Analyst", "start": "2020-09", "end": "2022-02", "highlights": ["Monthly credit-risk reports in Excel and SAS", "Automated data validation with Python (pandas)"]}
+  ],
+  "education": [
+    {"institution": "SGH Warsaw School of Economics", "degree": "MSc Quantitative Methods", "year": 2020},
+    {"institution": "University of Warsaw", "degree": "BSc Economics", "year": 2018}
+  ],
+  "languages": [{"language": "Polish", "level": "native"}, {"language": "English", "level": "C1"}, {"language": "German", "level": "B1"}],
+  "missing_fields": []
+}
