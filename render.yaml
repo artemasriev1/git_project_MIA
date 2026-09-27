@@ -1,0 +1,19 @@
+# Render Blueprint: New -> Blueprint -> pick this repo, and Render reads the settings below.
+services:
+  - type: web
+    name: albert-convert
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # One worker keeps the in-memory rate limiter accurate; long timeout covers API retries.
+    startCommand: gunicorn web.app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /api/info
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: CV2JSON_MOCK
+        value: "1"            # set to "0" once ANTHROPIC_API_KEY is filled in
+      - key: CV2JSON_RATE_LIMIT
+        value: "10 per hour"
+      - key: ANTHROPIC_API_KEY
+        sync: false           # Render asks for the value; it is never stored in the repo

@@ -23,12 +23,30 @@ pytest                                   # unit tests, no API key needed
 
 No key? `CV2JSON_MOCK=1 python -m src.extract data/cvs/` replays saved responses, handy for testing without paying.
 
+## The website: Albert Convert
+
+A web front end for the same pipeline (upload a PDF/TXT, paste text, or try a sample CV):
+
+```bash
+python -m web.app                    # then open http://127.0.0.1:5000
+CV2JSON_MOCK=1 python -m web.app     # no key: demo mode, sample CVs only
+```
+
+The page lives in `web/static/index.html`; `web/app.py` calls `src.extract.extract_one`, so the site and the CLI share prompts, retries and schema validation.
+
+### Deploying (Render)
+
+`render.yaml` describes the service. On render.com: **New → Blueprint**, pick this repo, deploy. It starts in demo mode (`CV2JSON_MOCK=1`). To convert real CVs, set `ANTHROPIC_API_KEY` in the Render dashboard and change `CV2JSON_MOCK` to `0`.
+
+Once live, every visitor's conversion is billed to that key. `/api/convert` is limited per IP (`CV2JSON_RATE_LIMIT`, default `10 per hour`); also set a monthly spend limit in the Anthropic console.
+
 ## Why an API key and not a local model
 
 We thought about running a model locally with Ollama, which would have skipped the key and the credit. In the end we went with the Anthropic API: same code for everyone, no need for a powerful machine, and the few cents it costs are not worth the hours lost installing a model on every laptop.
 
 ## What is where
 
+- `web/` the Albert Convert website (Flask server + single-page front end)
 - `src/` the code (API call with retry, JSON validation, evaluation)
 - `tests/` the pytest suite
 - `prompts/` the prompts, one file per variant
