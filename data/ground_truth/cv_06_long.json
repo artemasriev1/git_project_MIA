@@ -1,0 +1,66 @@
+{
+  "full_name": "Samuel Berg",
+  "email": "samuel.berg@example.no",
+  "phone": null,
+  "location": "Oslo, Norway",
+  "years_of_experience": 20,
+  "skills": [
+    "MS Project",
+    "Primavera",
+    "BIM",
+    "contract management",
+    "HSE"
+  ],
+  "experience": [
+    {
+      "company": "Skanska",
+      "title": "Project Manager",
+      "start": "2018",
+      "end": "present",
+      "highlights": [
+        "Delivered work package 1 for Skanska on time and within budget, coordinating subcontractors and reporting weekly to the steering committee.",
+        "Delivered work package 2 for Skanska on time and within budget, coordinating subcontractors and reporting weekly to the steering committee."
+      ]
+    },
+    {
+      "company": "Veidekke",
+      "title": "Project Manager",
+      "start": "2012",
+      "end": "2018",
+      "highlights": [
+        "Delivered work package 1 for Veidekke on time and within budget, coordinating subcontractors and reporting weekly to the steering committee.",
+        "Delivered work package 2 for Veidekke on time and within budget, coordinating subcontractors and reporting weekly to the steering committee."
+      ]
+    },
+    {
+      "company": "AF Gruppen",
+      "title": "Project Manager",
+      "start": "2006",
+      "end": "2012",
+      "highlights": [
+        "Delivered work package 1 for AF Gruppen on time and within budget, coordinating subcontractors and reporting weekly to the steering committee.",
+        "Delivered work package 2 for AF Gruppen on time and within budget, coordinating subcontractors and reporting weekly to the steering committee."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "NTNU",
+      "degree": "MSc Civil Engineering",
+      "year": 2005
+    }
+  ],
+  "languages": [
+    {
+      "language": "Norwegian",
+      "level": "native"
+    },
+    {
+      "language": "English",
+      "level": "fluent"
+    }
+  ],
+  "missing_fields": [
+    "phone"
+  ]
+}

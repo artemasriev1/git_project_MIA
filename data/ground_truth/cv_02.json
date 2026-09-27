@@ -1,0 +1,15 @@
+{
+  "full_name": "Théo Lambert",
+  "email": "theo.lambert@example.fr",
+  "phone": null,
+  "location": "Lyon",
+  "years_of_experience": 6,
+  "skills": ["Ruby", "Rails", "Python", "Django", "PostgreSQL", "Docker", "GitLab CI", "Kubernetes"],
+  "experience": [
+    {"company": "Doctolib", "title": "Ingénieur logiciel senior", "start": "2021", "end": "present", "highlights": ["Conception d'API Ruby on Rails, migration d'un monolithe vers des services, mentorat de 3 juniors."]},
+    {"company": "OVHcloud", "title": "Développeur backend", "start": "2018", "end": "2021", "highlights": ["Python, Django, PostgreSQL. Mise en place de la CI GitLab."]}
+  ],
+  "education": [{"institution": "INSA Lyon", "degree": "Diplôme d'ingénieur (informatique)", "year": 2018}],
+  "languages": [{"language": "français", "level": "langue maternelle"}, {"language": "anglais", "level": "courant"}],
+  "missing_fields": ["phone"]
+}
