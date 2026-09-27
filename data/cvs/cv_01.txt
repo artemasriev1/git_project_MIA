@@ -1,0 +1,25 @@
+MARTA KOWALSKI
+Data Analyst | Warsaw, Poland
+marta.kowalski@example.com | +48 600 123 456
+
+PROFILE
+Analyst with 4 years of experience turning messy operational data into dashboards that people actually use.
+
+EXPERIENCE
+Data Analyst, Allegro (Warsaw) — Mar 2022 to present
+- Built the returns-forecasting dashboard in Power BI, cutting weekly reporting time from 6h to 40min
+- Wrote SQL pipelines on BigQuery for the logistics team
+
+Junior Analyst, PKO Bank Polski — Sep 2020 to Feb 2022
+- Monthly credit-risk reports in Excel and SAS
+- Automated data validation with Python (pandas)
+
+EDUCATION
+MSc Quantitative Methods, SGH Warsaw School of Economics, 2020
+BSc Economics, University of Warsaw, 2018
+
+SKILLS
+SQL, Python, pandas, Power BI, Excel, SAS, BigQuery, dbt
+
+LANGUAGES
+Polish (native), English (C1), German (B1)
