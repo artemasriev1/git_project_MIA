@@ -145,18 +145,53 @@ select{font:inherit;font-size:14px;border:1px solid var(--line-2);border-radius:
 pre.json{margin:0;background:var(--code-bg);color:var(--code-ink);font:12.8px/1.6 var(--mono);padding:18px;overflow:auto;max-height:640px;flex:1;white-space:pre}
 .j-k{color:#8fb3ff}.j-s{color:#a6e3a1}.j-n{color:#fab387}.j-b{color:#f5c2e7}.j-z{color:#9399b2;font-style:italic}
 
+/* tool sections: each feature after the conversion gets a divider and a numbered title */
+.tool{margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
+.tool-head{display:flex;gap:12px;align-items:center}
+.tool-head h2{font-size:24px}
+.tool-num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+
 /* career analysis */
-#result,.an-cta{scroll-margin-top:80px}  /* keep scrolled-to sections clear of the sticky nav */
+#result,.tool{scroll-margin-top:80px}  /* keep scrolled-to sections clear of the sticky nav */
 .an-cta{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;margin-top:18px;padding:20px 22px}
-.an-cta h3{font-size:18px;margin-bottom:4px}
-.an-cta p{margin:0;color:var(--muted);font-size:14.5px}
-.an-cta .b-ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);justify-content:center;align-items:center}
+.an-cta h3,.au-intro h3{font-size:18px;margin-bottom:4px}
+.an-cta p,.au-intro p{margin:0;color:var(--muted);font-size:14.5px}
+.an-cta .b-ic,.au-intro .b-ic{flex:none;width:44px;height:44px;border-radius:12px;background:var(--brand-soft);justify-content:center;align-items:center}
 .an-actions{display:flex;flex-direction:column;gap:10px;align-items:stretch}
 .an-actions label{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
 @media (max-width:700px){.an-cta{grid-template-columns:1fr}.an-cta .btn{width:100%}}
 .report.streaming > :is(p,h1,h2,h3,ul,ol):last-child::after{content:"▍";color:var(--brand);animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-#aAlert{margin:12px 0 0}
+#anAlert,#auAlert{margin:12px 0 0}
+
+/* screening audit */
+.au-out{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(340px,1fr);gap:22px;align-items:start}
+.au-out .report{max-height:none}  /* the page scrolls, not the report box */
+.au-dims{position:sticky;top:80px}  /* stays in view while reading the flags */
+@media (max-width:900px){.au-out{grid-template-columns:1fr}.au-dims{position:static}.dims{max-height:520px}}
+.au-dims .pane-bar .sp{font-weight:500;color:var(--muted);font-size:12px}
+.dims{max-height:calc(100vh - 150px);overflow:auto;padding:6px 18px 16px}
+.dims h4{margin:14px 0 6px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dim{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.dim:last-child{border-bottom:0}
+.dim b{font-size:13px;color:var(--ink)}
+.dim p{grid-column:2;margin:0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.st{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;align-self:start;text-decoration:none;background:var(--bg-soft);color:var(--muted);border:1px solid var(--line)}
+.st.pass{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.st.sev-critical{background:var(--err-soft);color:var(--err);border-color:transparent}
+.st.sev-high{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.st.sev-medium{background:var(--brand-soft);color:var(--brand-2);border-color:transparent}
+.au-card{margin-top:18px;padding:20px 22px;display:grid;gap:16px}
+.au-intro{display:flex;gap:18px;align-items:center}
+.au-f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.au-f .opt{font-weight:500;color:var(--muted)}
+.au-f textarea{min-height:120px;font:400 14px/1.55 var(--font)}
+.au-f input{font:inherit;font-size:14px;font-weight:400;border:1px solid var(--line-2);border-radius:9px;padding:8px 10px;background:#fff;color:var(--ink)}
+.au-f input:focus{outline:2px solid var(--brand);border-color:transparent}
+.au-row{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end}
+@media (max-width:700px){.au-row{grid-template-columns:1fr}.au-intro{align-items:flex-start}.au-row .btn{width:100%}}
+.tag.sev-critical{background:var(--err-soft);color:var(--err)}.tag.sev-high{background:var(--warn-soft);color:var(--warn)}
+.tag.sev-medium{background:var(--brand-soft);color:var(--brand-2)}.tag.sev-low{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line)}
 .analysis{margin-top:18px}
 [hidden]{display:none!important}
 .report{padding:20px 24px;max-height:760px;overflow:auto;font-size:14.5px;color:var(--ink-2)}
@@ -358,6 +393,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-con
 <section id="result">
   <div class="wrap">
     <div class="res-head">
+      <span class="tool-num">1</span>
       <h2>Your JSON</h2>
       <span class="badge" id="rStatus"></span>
       <span class="badge" id="rTime"></span>
@@ -380,36 +416,88 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-con
       </div>
     </div>
 
-    <div class="card an-cta" id="anCta" hidden>
+    <div class="tool" id="anTool" hidden>
+    <div class="tool-head">
+      <span class="tool-num">2</span>
+      <h2>Career analysis</h2>
+    </div>
+    <div class="card an-cta" id="anCta">
       <div class="b-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
       <div>
-        <h3>Career analysis</h3>
+        <h3>How well does this CV fit a role?</h3>
         <p>A second pass reads this JSON <em>and</em> the original CV, then writes a report on fit for the role you pick: hard and soft skills, gaps and next steps. Every claim cites the CV lines it rests on and is marked Stated or Inferred.</p>
       </div>
       <div class="an-actions">
         <label>Target role
           <select id="role"><option value="data_scientist">Data scientist</option></select>
         </label>
-        <button class="btn btn-primary" id="analyse">Analyse career fit</button>
+        <button class="btn btn-primary" id="anGo">Analyse career fit</button>
       </div>
     </div>
-    <div class="alert" id="aAlert" role="alert"></div>
+    <div class="alert" id="anAlert" role="alert"></div>
 
-    <div class="res-grid analysis" id="analysis" hidden>
+    <div class="res-grid analysis" id="anOut" hidden>
       <div class="card pane">
         <div class="pane-bar">
           Analyst report
           <span class="sp">
-            <button class="icon-btn" id="aCopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
-            <button class="icon-btn" id="aDownload"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>.md</button>
+            <button class="icon-btn" id="anCopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+            <button class="icon-btn" id="anDownload"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>.md</button>
           </span>
         </div>
-        <div class="report" id="report"></div>
+        <div class="report" id="anReport"></div>
       </div>
       <div class="card pane">
         <div class="pane-bar">Source CV <span class="sp" style="font-weight:500;color:var(--muted);font-size:12.5px">click a line reference to jump here</span></div>
-        <div class="cvlines" id="cvLines"></div>
+        <div class="cvlines" id="anLines"></div>
       </div>
+    </div>
+    </div>
+
+    <div class="tool" id="auTool" hidden>
+    <div class="tool-head">
+      <span class="tool-num">3</span>
+      <h2>CV screening audit</h2>
+    </div>
+    <div class="card au-card">
+      <div class="au-intro">
+        <div class="b-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div>
+          <h3>How will screening software read this CV?</h3>
+          <p>Checks the CV the way applicant tracking systems, AI rankers and recruiters read it, across 59 dimensions. Every shortfall comes back as a flag, most critical first, with the evidence and an honest fix. Add the job posting for job-specific checks.</p>
+        </div>
+      </div>
+      <label class="au-f">Job description <span class="opt">optional, strongly recommended</span>
+        <textarea id="job" maxlength="20000" placeholder="Paste the job posting here…"></textarea>
+      </label>
+      <div class="au-row">
+        <label class="au-f">Target role, field, seniority <span class="opt">optional</span>
+          <input id="target" maxlength="200" placeholder="e.g. Junior data analyst, marketing">
+        </label>
+        <label class="au-f">Market / country <span class="opt">optional</span>
+          <input id="market" maxlength="200" placeholder="e.g. France">
+        </label>
+        <button class="btn btn-primary" id="auGo">Run screening audit</button>
+      </div>
+    </div>
+    <div class="alert" id="auAlert" role="alert"></div>
+
+    <div class="analysis au-out" id="auOut" hidden>
+      <div class="card pane">
+        <div class="pane-bar">
+          Screening audit
+          <span class="sp">
+            <button class="icon-btn" id="auCopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+            <button class="icon-btn" id="auDownload"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>.md</button>
+          </span>
+        </div>
+        <div class="report" id="auReport"></div>
+      </div>
+      <div class="card pane au-dims">
+        <div class="pane-bar">Dimension status <span class="sp" id="auDimSum"></span></div>
+        <div class="dims" id="auDims"><p class="loading">Fills in as soon as the audit starts.</p></div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -754,11 +842,14 @@ function render(rec) {
   $("#rVariant").textContent = { few_shot: "Few-shot", zero_shot: "Zero-shot", cot: "Chain-of-thought" }[rec.prompt] || rec.prompt;
   $("#profile").innerHTML = rec.ok ? profileHTML(rec.data)
     : `<p style="color:var(--err)"><b>The model's answer did not pass validation.</b></p><p style="color:var(--muted);font-size:14px">${esc(rec.error)}</p><p style="font-size:14px;color:var(--muted)">This is the pipeline doing its job: a broken answer is flagged instead of passed on as data. Try the few-shot method.</p>`;
-  // A new conversion invalidates any previous analysis; the analyst only runs on valid JSON.
-  state.report = null;
-  $("#analysis").hidden = true;
-  $("#aAlert").classList.remove("show");
-  $("#anCta").hidden = !(rec.ok && rec.cv_text);
+  // A new conversion invalidates any previous report; both tools only open after a valid conversion.
+  for (const [p, t] of Object.entries(TOOLS)) {
+    t.report = null;
+    $(`#${p}Out`).hidden = true;
+    $(`#${p}Alert`).classList.remove("show");
+    $(`#${p}Go`).textContent = t.idle;
+    $(`#${p}Tool`).hidden = !(rec.ok && rec.cv_text);
+  }
   $("#result").classList.add("show");
   $("#result").scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -795,32 +886,161 @@ $("#download").addEventListener("click", () => {
   a.click(); URL.revokeObjectURL(a.href);
 });
 
-// career analysis
-$("#analyse").addEventListener("click", async () => {
-  const rec = state.last;
+// report tools: career analysis (an) and screening audit (au) share the NDJSON stream,
+// the Markdown report pane and the clickable source-CV pane; element ids are "#<prefix>Go", "#<prefix>Report", ...
+const TOOLS = {
+  an: { url: "/api/analyse", idle: "Analyse career fit", busy: "Analysing…", again: "Analyse again",
+        loading: "Reading the CV. The report appears here as it is written.", what: "analysis",
+        body: rec => ({ data: rec.data, cv_text: rec.cv_text, role: $("#role").value }),
+        file: () => `_${$("#role").value}_analysis.md` },
+  au: { url: "/api/audit", idle: "Run screening audit", busy: "Auditing…", again: "Audit again",
+        loading: "Checking 59 screening dimensions. The audit appears here as it is written.", what: "audit",
+        body: rec => ({ cv_text: rec.cv_text, source: rec.source, job: $("#job").value, target: $("#target").value, market: $("#market").value }),
+        file: () => "_screening_audit.md", noLines: true,
+        split: splitDims, side: renderDims, exportText: exportAudit },
+};
+
+// The 59 audit dimensions (prompts/cv_audit.md, section 8): group, name, one-line description.
+const DIMS = {
+  "A · Parseability": [
+    ["Text layer", "Text is selectable and matches what's visible; nothing essential in images."],
+    ["Reading order", "Extracted text flows logically; title, employer and dates stay together."],
+    ["Header and footer placement", "Contact details sit in the body, not in page headers or footers."],
+    ["Section headings", "Standard headings, so the parser files each section correctly."],
+    ["Date consistency", "Month-and-year dates in one format for every role and degree."],
+    ["Length", "Word count fits the career stage."],
+    ["Language", "Same language and spelling as the job description."]],
+  "B · Eligibility and knockouts": [
+    ["Work authorisation", "Right to work stated when applying across borders."],
+    ["Location", "City and country present and compatible with the job."],
+    ["Minimum years of experience", "Years computed from dates meet the posting's minimum."],
+    ["Degree", "Required degree level and field in standard wording."],
+    ["Licences, certifications and clearances", "Required credentials with official name and status."],
+    ["Employment gaps", "No unexplained gaps over six months."],
+    ["Criminal-record questions", "Handled by application questions, not the CV."],
+    ["Availability and logistics", "Nothing contradicts start date, shifts or travel needs."],
+    ["Salary expectation", "No salary figures on the CV."],
+    ["Language proficiency", "Required languages listed with standard levels."]],
+  "C · Skills": [
+    ["Required-skill coverage", "Every required skill appears, ideally in a role bullet."],
+    ["Preferred-skill coverage", "Preferred skills the candidate has are shown."],
+    ["Synonym matching", "Standard, correctly spelled skill names and acronyms."],
+    ["Skill recency", "Core skills appear in recent roles."],
+    ["Skill duration", "Roles mentioning a skill add up to the years required."],
+    ["Skill context", "Core skills backed by a role or project bullet, not just a list."],
+    ["Inferred and related skills", "Generic areas backed by specific tools and methods."],
+    ["Keyword frequency", "Core terms appear naturally two or three times; no dumps."],
+    ["Soft skills", "Shown through actions, not adjectives."]],
+  "D · Title and level": [
+    ["Title match", "Target title or its standard equivalent appears."],
+    ["Seniority", "Level signals match the target level."],
+    ["Function or work field", "Latest title and summary make the function clear."],
+    ["Career trajectory", "Promotions and growing scope are visible."]],
+  "E · Experience": [
+    ["Total experience", "Total years computable; concurrent roles labelled."],
+    ["Relevant experience", "Relevant roles carry the most detail."],
+    ["Industry or domain", "Industry visible and matching the posting."],
+    ["Employers", "Employers named consistently, described if lesser known."],
+    ["Tenure and stability", "Short stints are explained."],
+    ["Current employment", "Current role marked \"Present\", or last end date clear."],
+    ["Management scope", "Leadership roles quantify team, budget and scope."]],
+  "F · Content quality": [
+    ["Evidence and measurable impact", "Recent bullets state concrete outcomes."],
+    ["Writing style", "Correct, consistent and tight writing."]],
+  "G · Education and credentials": [
+    ["Highest degree level", "Degree level in standard naming."],
+    ["Field, institution, grades and completion", "Field, institution, dates and completion status are clear."],
+    ["Graduation date", "Present for early-career candidates."],
+    ["Certifications and courses", "Official name, issuer and year."]],
+  "H · Online footprint": [
+    ["Profile and portfolio links", "LinkedIn and field-expected links as plain URLs."],
+    ["Outside data", "Linked profiles are current and support the CV."],
+    ["Profile consistency", "LinkedIn and other sources match the CV."]],
+  "I · Application context": [
+    ["Screening answers", "Application answers agree with the CV."],
+    ["Application timing", "Outside the CV."],
+    ["Source and history", "Outside the CV."],
+    ["Assessments", "Outside the CV."]],
+  "J · Integrity checks": [
+    ["Hidden text", "No invisible text in the file."],
+    ["Hidden AI instructions", "Nothing addressed to an AI to sway the evaluation."],
+    ["Identity and fraud", "Consistent identity, plausible timeline, verifiable anchors."]],
+  "K · Protected characteristics": [
+    ["Name", "Full name as plain text at the top of the body."],
+    ["Age signals", "Early career summarised; no obsolete tools up front."],
+    ["Gaps as a proxy", "Gap labels are brief and neutral."],
+    ["Gendered wording", "Neutral wording; identity-linked entries show skills."],
+    ["Personal data", "No unnecessary personal data for the target market."],
+    ["Address", "City and country, no street address."]],
+};
+
+// The audit opens with a ```dimensions block ("D5 Flag 8" per line); show it in the panel, not in the report.
+// It is parsed while it streams, so the panel fills in before the flags are written.
+function splitDims(text) {
+  const i = text.indexOf("```dimensions");
+  if (i < 0) return { md: text };
+  const close = text.indexOf("```", i + 13);
+  const block = close < 0 ? text.slice(i) : text.slice(i, close);
+  const side = {};
+  for (const m of block.matchAll(/^D(\d+)\s+(Pass|Flag|N\/A|Not assessable)(.*)$/gim))
+    side[+m[1]] = { status: m[2].toLowerCase(), flags: m[3].match(/\d+/g) || [] };  // "Flag 3 4", "Flag 3, Flag 4"...
+  return { md: (text.slice(0, i) + (close < 0 ? "" : text.slice(close + 3))).trim(), side };
+}
+function renderDims(side, md = "") {
+  const box = $("#auDims");
+  if (!side) { box.innerHTML = '<p class="loading">Fills in as soon as the audit starts.</p>'; $("#auDimSum").textContent = ""; return; }
+  const sev = {};
+  for (const m of md.matchAll(/^###\s+(\d+)\.\s+\[(CRITICAL|HIGH|MEDIUM|LOW)\]/gm)) sev[m[1]] = m[2].toLowerCase();
+  const count = { pass: 0, flag: 0 };
+  let n = 0, html = "";
+  for (const [group, dims] of Object.entries(DIMS)) {
+    html += `<h4>${group}</h4>`;
+    for (const [name, desc] of dims) {
+      const d = side[++n] || { status: "" };
+      if (d.status in count) count[d.status]++;
+      const chip = d.status === "flag" && d.flags.length
+        ? `<span>${d.flags.map(f => `<a href="#auF${f}" class="st sev-${sev[f] || "low"}">Flag #${f}</a>`).join(" ")}</span>`
+        : `<span class="st ${d.status === "pass" ? "pass" : ""}">${{ pass: "Pass", flag: "Flag", "n/a": "N/A", "not assessable": "Not assessable" }[d.status] || "—"}</span>`;
+      html += `<div class="dim">${chip}<b>D${n} ${esc(name)}</b><p>${esc(desc)}</p></div>`;
+    }
+  }
+  box.innerHTML = html;
+  $("#auDimSum").textContent = `${count.pass} pass · ${count.flag} flagged`;
+}
+// Copy/download: the report plus the statuses as a readable list instead of the raw block.
+function exportAudit(text) {
+  const { md, side } = splitDims(text);
+  if (!side) return md;
+  let n = 0, out = md + "\n\n## Dimension status\n";
+  for (const dims of Object.values(DIMS))
+    for (const [name] of dims) { const d = side[++n]; out += `- D${n} ${name}: ${d ? d.status + d.flags.map(f => " #" + f).join("") : "—"}\n`; }
+  return out;
+}
+
+async function runTool(p) {
+  const t = TOOLS[p], rec = state.last;
   if (!rec || !rec.ok) return;
-  const btn = $("#analyse"), alert = $("#aAlert");
+  const btn = $(`#${p}Go`), alert = $(`#${p}Alert`), out = $(`#${p}Out`), box = $(`#${p}Report`);
   alert.classList.remove("show");
-  const role = $("#role").value;
-  btn.disabled = true; btn.textContent = "Analysing…";
-  $("#analysis").hidden = false;
-  $("#report").className = "report";
-  $("#report").innerHTML = '<p class="loading">Reading the CV. The report appears here as it is written.</p>';
-  $("#cvLines").innerHTML = "";
-  state.report = null; state.role = role;
-  $("#anCta").scrollIntoView({ behavior: "smooth", block: "start" });
+  btn.disabled = true; btn.textContent = t.busy;
+  out.hidden = false;
+  box.className = "report";
+  box.innerHTML = `<p class="loading">${t.loading}</p>`;
+  if (!t.noLines) $(`#${p}Lines`).innerHTML = "";
+  if (t.side) t.side(null);
+  t.report = null; t.name = t.file();
+  $(`#${p}Tool`).scrollIntoView({ behavior: "smooth", block: "start" });
   let text = "", nLines = 0, frame = 0;
-  const paint = () => { frame = 0; renderReport(text, nLines); };
+  const paint = () => { frame = 0; renderReport(p, text, nLines); };
   try {
-    const r = await fetch("/api/analyse", {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: rec.data, cv_text: rec.cv_text, role }),
+    const r = await fetch(t.url, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(t.body(rec)),
     });
-    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || "Analysis failed.");
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || `The ${t.what} failed.`);
     // NDJSON: one event per line (lines, then deltas, then done or error)
     const reader = r.body.getReader(), dec = new TextDecoder();
     let buf = "";
-    $("#report").classList.add("streaming");
+    box.classList.add("streaming");
     for (;;) {
       const { value, done } = await reader.read();
       if (done) break;
@@ -831,43 +1051,55 @@ $("#analyse").addEventListener("click", async () => {
         const line = buf.slice(0, nl); buf = buf.slice(nl + 1);
         if (!line) continue;
         const ev = JSON.parse(line);
-        if (ev.lines) {
+        if (ev.lines && !t.noLines) {
           nLines = ev.lines.length;
-          $("#cvLines").innerHTML = ev.lines.map((l, i) =>
-            `<div class="ln" id="L${i + 1}"><span>${i + 1}</span>${esc(l) || " "}</div>`).join("");
+          $(`#${p}Lines`).innerHTML = ev.lines.map((l, i) =>
+            `<div class="ln" id="${p}L${i + 1}"><span>${i + 1}</span>${esc(l) || " "}</div>`).join("");
         }
-        if (ev.delta) { text += ev.delta; state.report = text; if (!frame) frame = requestAnimationFrame(paint); }
-        if (ev.error) throw new Error("The analysis stopped early: " + ev.error);
+        if (ev.delta) { text += ev.delta; t.report = text; if (!frame) frame = requestAnimationFrame(paint); }
+        if (ev.error) throw new Error(`The ${t.what} stopped early: ` + ev.error);
       }
     }
-    if (!text) throw new Error("The analyst returned an empty report.");
+    if (!text) throw new Error(`The ${t.what} came back empty.`);
   } catch (e) {
-    if (!text) $("#analysis").hidden = true;  // keep a partial report if one arrived
+    if (!text) out.hidden = true;  // keep a partial report if one arrived
     alert.textContent = e instanceof TypeError ? "Could not reach the server." : e.message;
     alert.classList.add("show");
   } finally {
     if (frame) cancelAnimationFrame(frame);
-    if (text && state.last === rec) { $("#report").classList.remove("streaming"); renderReport(text, nLines); }
-    btn.disabled = false; btn.textContent = state.last === rec ? "Analyse again" : "Analyse career fit";
+    if (text && state.last === rec) { box.classList.remove("streaming"); renderReport(p, text, nLines); }
+    btn.disabled = false; btn.textContent = state.last === rec ? t.again : t.idle;
   }
-});
+}
 
-function renderReport(md, nLines) {
-  const box = $("#report");
+function renderReport(p, text, nLines) {
+  const box = $(`#${p}Report`), t = TOOLS[p];
+  const { md, side } = t.split ? t.split(text) : { md: text };
+  if (t.side && side) t.side(side, md);
+  if (!md) return;  // status block still streaming: keep the loading line in the report
   if (window.marked && window.DOMPurify) {
     box.innerHTML = DOMPurify.sanitize(marked.parse(md));
     decorateReport(box, nLines);
+    if (t.side) box.querySelectorAll("h3").forEach(h => {  // anchors for the status panel's flag links
+      const n = h.textContent.match(/^(\d+)\./);
+      if (n) h.id = `${p}F${n[1]}`;
+    });
   } else {  // CDN blocked: still show the report, just unformatted
     box.innerHTML = `<pre style="white-space:pre-wrap;font:13px/1.6 var(--mono);margin:0">${esc(md)}</pre>`;
   }
 }
 
-// Turn "lines 42-47", bare "42-47" table cells and Stated/Inferred labels into interactive bits.
-const REF_RE = /\b[Ll]ines?\s+\d+(?:\s*[-–]\s*\d+)?(?:\s*(?:,|and|&)\s*\d+(?:\s*[-–]\s*\d+)?)*|\b(?:Stated|Inferred)\b/g;
+// Turn "lines 42-47", bare "42-47" table cells, Stated/Inferred labels and [CRITICAL]-style severities into interactive bits.
+const REF_RE = /\b[Ll]ines?\s+\d+(?:\s*[-–]\s*\d+)?(?:\s*(?:,|and|&)\s*\d+(?:\s*[-–]\s*\d+)?)*|\b(?:Stated|Inferred)\b|\[(?:CRITICAL|HIGH|MEDIUM|LOW)\]/g;
 const CELL_RE = /^\s*\d+(?:\s*[-–]\s*\d+)?(?:\s*,\s*\d+(?:\s*[-–]\s*\d+)?)*\s*$/;
 function linkNumbers(txt, max) {
   return esc(txt).replace(/(\d+)(?:\s*[-–]\s*(\d+))?/g, (m, a, b) =>
     +a >= 1 && +a <= max ? `<a href="#" class="lref" data-a="${a}" data-b="${b || a}">${m}</a>` : m);
+}
+function tagFor(m) {
+  if (/^(Stated|Inferred)$/.test(m)) return `<span class="tag ${m.toLowerCase()}">${m}</span>`;
+  const sev = m.slice(1, -1).toLowerCase();
+  return `<span class="tag sev-${sev}">${sev[0].toUpperCase() + sev.slice(1)}</span>`;
 }
 function decorateReport(root, max) {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -884,7 +1116,7 @@ function decorateReport(root, max) {
       let out = "", last = 0;
       t.replace(REF_RE, (m, off) => {
         out += esc(t.slice(last, off));
-        out += /^(Stated|Inferred)$/.test(m) ? `<span class="tag ${m.toLowerCase()}">${m}</span>` : linkNumbers(m, max);
+        out += /^[\[SI]/.test(m) ? tagFor(m) : linkNumbers(m, max);
         last = off + m.length;
       });
       html = out + esc(t.slice(last));
@@ -894,31 +1126,34 @@ function decorateReport(root, max) {
     n.replaceWith(...span.childNodes);
   }
 }
-$("#report").addEventListener("click", ev => {
-  const a = ev.target.closest("a.lref");
-  if (!a) return;
-  ev.preventDefault();
-  $$(".ln.hit").forEach(x => x.classList.remove("hit"));
-  const from = +a.dataset.a, to = Math.max(from, +a.dataset.b);
-  for (let i = from; i <= to; i++) { const el = $("#L" + i); if (el) el.classList.add("hit"); }
-  const first = $("#L" + from), pane = $("#cvLines");
-  if (!first) return;
-  pane.scrollTo({ top: first.offsetTop - pane.clientHeight / 3, behavior: "smooth" });
-  const box = pane.getBoundingClientRect();
-  if (box.top > innerHeight || box.bottom < 0) pane.scrollIntoView({ behavior: "smooth", block: "start" });
-});
 
-$("#aCopy").addEventListener("click", async () => {
-  if (!state.report) return;
-  try { await navigator.clipboard.writeText(state.report); $("#aCopy span").textContent = "Copied"; setTimeout(() => $("#aCopy span").textContent = "Copy", 1500); } catch {}
-});
-$("#aDownload").addEventListener("click", () => {
-  if (!state.report) return;
-  const blob = new Blob([state.report], { type: "text/markdown" });
-  const name = $("#jsonTitle").textContent.replace(/\.json$/, "") + `_${state.role}_analysis.md`;
-  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
-  a.click(); URL.revokeObjectURL(a.href);
-});
+for (const [p, t] of Object.entries(TOOLS)) {
+  $(`#${p}Go`).addEventListener("click", () => runTool(p));
+  $(`#${p}Report`).addEventListener("click", ev => {
+    const a = ev.target.closest("a.lref");
+    if (!a) return;
+    ev.preventDefault();
+    $$(`#${p}Lines .ln.hit`).forEach(x => x.classList.remove("hit"));
+    const from = +a.dataset.a, to = Math.max(from, +a.dataset.b);
+    for (let i = from; i <= to; i++) { const el = $(`#${p}L${i}`); if (el) el.classList.add("hit"); }
+    const first = $(`#${p}L${from}`), pane = $(`#${p}Lines`);
+    if (!first) return;
+    pane.scrollTo({ top: first.offsetTop - pane.clientHeight / 3, behavior: "smooth" });
+    const box = pane.getBoundingClientRect();
+    if (box.top > innerHeight || box.bottom < 0) pane.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $(`#${p}Copy`).addEventListener("click", async () => {
+    if (!t.report) return;
+    try { await navigator.clipboard.writeText(t.exportText ? t.exportText(t.report) : t.report); $(`#${p}Copy span`).textContent = "Copied"; setTimeout(() => $(`#${p}Copy span`).textContent = "Copy", 1500); } catch {}
+  });
+  $(`#${p}Download`).addEventListener("click", () => {
+    if (!t.report) return;
+    const blob = new Blob([t.exportText ? t.exportText(t.report) : t.report], { type: "text/markdown" });
+    const name = $("#jsonTitle").textContent.replace(/\.json$/, "") + t.name;
+    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
+    a.click(); URL.revokeObjectURL(a.href);
+  });
+}
 
 // static content
 $("#exampleJson").innerHTML = highlight(EXAMPLE);
