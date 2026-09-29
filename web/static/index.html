@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap">
+<!-- Markdown rendering for the analyst report; the report is sanitised because it can quote CV text. -->
+<script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233050F5'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <style>
 :root{
@@ -63,7 +66,7 @@ button{font:inherit;cursor:pointer}
 .tab{flex:1;border:0;background:transparent;padding:9px 10px;border-radius:9px;font-weight:600;font-size:14px;color:var(--muted)}
 .tab[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.1)}
 .panel{padding:14px 6px 4px}
-.drop{border:2px dashed var(--line-2);border-radius:14px;padding:38px 20px;text-align:center;transition:.15s;cursor:pointer;background:linear-gradient(180deg,#fbfcff,#f6f8fe)}
+.drop{display:block;border:2px dashed var(--line-2);border-radius:14px;padding:38px 20px;text-align:center;transition:.15s;cursor:pointer;background:linear-gradient(180deg,#fbfcff,#f6f8fe)}
 .drop:hover,.drop.over{border-color:var(--brand);background:var(--bg-tint)}
 .drop-icon{width:52px;height:52px;border-radius:14px;margin:0 auto 12px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand)}
 .drop strong{display:block;font-size:17px}
@@ -141,6 +144,43 @@ select{font:inherit;font-size:14px;border:1px solid var(--line-2);border-radius:
 .meter i{display:block;height:100%;background:var(--brand);border-radius:99px}
 pre.json{margin:0;background:var(--code-bg);color:var(--code-ink);font:12.8px/1.6 var(--mono);padding:18px;overflow:auto;max-height:640px;flex:1;white-space:pre}
 .j-k{color:#8fb3ff}.j-s{color:#a6e3a1}.j-n{color:#fab387}.j-b{color:#f5c2e7}.j-z{color:#9399b2;font-style:italic}
+
+/* career analysis */
+#result,.an-cta{scroll-margin-top:80px}  /* keep scrolled-to sections clear of the sticky nav */
+.an-cta{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;margin-top:18px;padding:20px 22px}
+.an-cta h3{font-size:18px;margin-bottom:4px}
+.an-cta p{margin:0;color:var(--muted);font-size:14.5px}
+.an-cta .b-ic{width:44px;height:44px;border-radius:12px;background:var(--brand-soft);justify-content:center;align-items:center}
+.an-actions{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.an-actions label{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+@media (max-width:700px){.an-cta{grid-template-columns:1fr}.an-cta .btn{width:100%}}
+.report.streaming > :is(p,h1,h2,h3,ul,ol):last-child::after{content:"▍";color:var(--brand);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+#aAlert{margin:12px 0 0}
+.analysis{margin-top:18px}
+[hidden]{display:none!important}
+.report{padding:20px 24px;max-height:760px;overflow:auto;font-size:14.5px;color:var(--ink-2)}
+.report h1,.report h2,.report h3{color:var(--ink);margin:22px 0 8px}
+.report h1{font-size:22px}.report h2{font-size:18px}.report h3{font-size:16px}
+.report > :first-child{margin-top:0}
+.report p,.report ul,.report ol{margin:0 0 10px}
+.report ul,.report ol{padding-left:20px}
+.report table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:13.5px}
+.report th,.report td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+.report th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.report code{font:12.5px var(--mono);background:var(--bg-soft);padding:1px 5px;border-radius:5px}
+.report .tag{margin-left:0}
+.tag.stated{background:var(--ok-soft);color:var(--ok)}.tag.inferred{background:var(--brand-soft);color:var(--brand-2)}
+a.lref{font:500 12.5px var(--mono);background:var(--bg-tint);border-radius:5px;padding:0 4px}
+a.lref:hover{background:var(--brand);color:#fff}
+.loading{color:var(--muted);display:flex;gap:10px;align-items:center}
+.loading::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--line-2);border-top-color:var(--brand);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cvlines{position:relative;max-height:760px;overflow:auto;font:12.5px/1.7 var(--mono);padding:10px 0;color:var(--ink-2)}
+.ln{display:grid;grid-template-columns:44px 1fr;padding:0 14px 0 0;white-space:pre-wrap;word-break:break-word;transition:background .3s}
+.ln span{color:var(--muted);text-align:right;padding-right:12px;user-select:none}
+.ln.hit{background:var(--warn-soft)}
+.ln.hit span{color:var(--warn);font-weight:600}
 
 /* sections */
 section.block{padding:88px 0}
@@ -249,7 +289,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-con
   <div class="wrap">
     <span class="eyebrow"><b>New</b> Grounded extraction, powered by Claude</span>
     <h1>CV to <span>JSON</span> Converter</h1>
-    <p class="lead">Drop in a résumé as PDF or text and get back clean, schema-validated JSON: contact details, skills, experience, education and languages. Nothing invented, nothing hidden.</p>
+    <p class="lead">Drop in a résumé as PDF or text and get back clean, schema-validated JSON: contact details, skills, experience, education and languages. Then, optionally, get a career analysis where every claim is linked to the CV line it comes from. Nothing invented, nothing hidden.</p>
 
     <div class="card converter" id="converter">
       <div class="tabs" role="tablist" aria-label="Input method">
@@ -337,6 +377,38 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-con
           </span>
         </div>
         <pre class="json" id="json"></pre>
+      </div>
+    </div>
+
+    <div class="card an-cta" id="anCta" hidden>
+      <div class="b-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
+      <div>
+        <h3>Career analysis</h3>
+        <p>A second pass reads this JSON <em>and</em> the original CV, then writes a report on fit for the role you pick: hard and soft skills, gaps and next steps. Every claim cites the CV lines it rests on and is marked Stated or Inferred.</p>
+      </div>
+      <div class="an-actions">
+        <label>Target role
+          <select id="role"><option value="data_scientist">Data scientist</option></select>
+        </label>
+        <button class="btn btn-primary" id="analyse">Analyse career fit</button>
+      </div>
+    </div>
+    <div class="alert" id="aAlert" role="alert"></div>
+
+    <div class="res-grid analysis" id="analysis" hidden>
+      <div class="card pane">
+        <div class="pane-bar">
+          Analyst report
+          <span class="sp">
+            <button class="icon-btn" id="aCopy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+            <button class="icon-btn" id="aDownload"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>.md</button>
+          </span>
+        </div>
+        <div class="report" id="report"></div>
+      </div>
+      <div class="card pane">
+        <div class="pane-bar">Source CV <span class="sp" style="font-weight:500;color:var(--muted);font-size:12.5px">click a line reference to jump here</span></div>
+        <div class="cvlines" id="cvLines"></div>
       </div>
     </div>
   </div>
@@ -497,6 +569,7 @@ Polish (native), English (C1), German (B1)</pre>
       <details><summary>Which file formats are supported?</summary><p>PDF and plain text (.txt), up to 5 MB. You can also paste CV text directly. Scanned image-only PDFs have no text layer, so they need OCR first.</p></details>
       <details><summary>Will it make up information that isn't in the CV?</summary><p>No, and that's the core design goal. The model is instructed to copy values only, and to return <code>null</code> plus an entry in <code>missing_fields</code> for anything not present. This is checked in our benchmark.</p></details>
       <details><summary>What happens if a CV contains hidden instructions for the AI?</summary><p>They're ignored. The CV is wrapped in <code>&lt;cv&gt;</code> tags and the rules state that anything inside is data. The few-shot examples include a CV with an injected instruction, so the model sees the correct behaviour. Try the "injection" sample above.</p></details>
+      <details><summary>What is the career analysis?</summary><p>After a successful conversion you can run a second pass: an analyst prompt reads the validated JSON together with the original CV (numbered line by line) and writes a report on fit for a target role you choose (data scientist, data analyst, data engineer, ML engineer or AI engineer), covering hard and soft skills, gaps and next steps. The report appears as it is written. Each claim cites CV line numbers, which you can click to see the source, and is marked <b>Stated</b> (written in the CV) or <b>Inferred</b> (the analyst's interpretation). It follows the same rules as extraction: nothing invented, and instructions hidden in the CV are reported, not followed.</p></details>
       <details><summary>Do you store my CV?</summary><p>No. Uploads are written to a temporary file for the duration of the request and deleted immediately after.</p></details>
       <details><summary>What is "demo mode"?</summary><p>When the server runs without an API key, it replays saved responses for the sample CVs so you can see the whole pipeline end to end. Add an <code>ANTHROPIC_API_KEY</code> to convert your own files.</p></details>
     </div>
@@ -605,6 +678,10 @@ fetch("/api/info").then(r => r.json()).then(info => {
     $$(".sample").forEach(x => x.setAttribute("aria-pressed", x === b));
     hideAlert();
   }));
+  if (info.roles) {
+    $("#role").innerHTML = info.roles.map(r => `<option value="${esc(r.id)}">${esc(r.label)}</option>`).join("");
+    $("#role").value = info.default_role;
+  }
   if (info.mock) $$(".tab")[2].click();
 }).catch(() => { $("#mode").lastElementChild.textContent = "Server offline"; });
 
@@ -677,6 +754,11 @@ function render(rec) {
   $("#rVariant").textContent = { few_shot: "Few-shot", zero_shot: "Zero-shot", cot: "Chain-of-thought" }[rec.prompt] || rec.prompt;
   $("#profile").innerHTML = rec.ok ? profileHTML(rec.data)
     : `<p style="color:var(--err)"><b>The model's answer did not pass validation.</b></p><p style="color:var(--muted);font-size:14px">${esc(rec.error)}</p><p style="font-size:14px;color:var(--muted)">This is the pipeline doing its job: a broken answer is flagged instead of passed on as data. Try the few-shot method.</p>`;
+  // A new conversion invalidates any previous analysis; the analyst only runs on valid JSON.
+  state.report = null;
+  $("#analysis").hidden = true;
+  $("#aAlert").classList.remove("show");
+  $("#anCta").hidden = !(rec.ok && rec.cv_text);
   $("#result").classList.add("show");
   $("#result").scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -710,6 +792,131 @@ $("#download").addEventListener("click", () => {
   if (!state.last || !state.last.ok) return;
   const blob = new Blob([JSON.stringify(state.last.data, null, 2)], { type: "application/json" });
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: $("#jsonTitle").textContent });
+  a.click(); URL.revokeObjectURL(a.href);
+});
+
+// career analysis
+$("#analyse").addEventListener("click", async () => {
+  const rec = state.last;
+  if (!rec || !rec.ok) return;
+  const btn = $("#analyse"), alert = $("#aAlert");
+  alert.classList.remove("show");
+  const role = $("#role").value;
+  btn.disabled = true; btn.textContent = "Analysing…";
+  $("#analysis").hidden = false;
+  $("#report").className = "report";
+  $("#report").innerHTML = '<p class="loading">Reading the CV. The report appears here as it is written.</p>';
+  $("#cvLines").innerHTML = "";
+  state.report = null; state.role = role;
+  $("#anCta").scrollIntoView({ behavior: "smooth", block: "start" });
+  let text = "", nLines = 0, frame = 0;
+  const paint = () => { frame = 0; renderReport(text, nLines); };
+  try {
+    const r = await fetch("/api/analyse", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: rec.data, cv_text: rec.cv_text, role }),
+    });
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || "Analysis failed.");
+    // NDJSON: one event per line (lines, then deltas, then done or error)
+    const reader = r.body.getReader(), dec = new TextDecoder();
+    let buf = "";
+    $("#report").classList.add("streaming");
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      if (state.last !== rec) { reader.cancel(); return; }  // user converted another CV meanwhile
+      buf += dec.decode(value, { stream: true });
+      let nl;
+      while ((nl = buf.indexOf("\n")) >= 0) {
+        const line = buf.slice(0, nl); buf = buf.slice(nl + 1);
+        if (!line) continue;
+        const ev = JSON.parse(line);
+        if (ev.lines) {
+          nLines = ev.lines.length;
+          $("#cvLines").innerHTML = ev.lines.map((l, i) =>
+            `<div class="ln" id="L${i + 1}"><span>${i + 1}</span>${esc(l) || " "}</div>`).join("");
+        }
+        if (ev.delta) { text += ev.delta; state.report = text; if (!frame) frame = requestAnimationFrame(paint); }
+        if (ev.error) throw new Error("The analysis stopped early: " + ev.error);
+      }
+    }
+    if (!text) throw new Error("The analyst returned an empty report.");
+  } catch (e) {
+    if (!text) $("#analysis").hidden = true;  // keep a partial report if one arrived
+    alert.textContent = e instanceof TypeError ? "Could not reach the server." : e.message;
+    alert.classList.add("show");
+  } finally {
+    if (frame) cancelAnimationFrame(frame);
+    if (text && state.last === rec) { $("#report").classList.remove("streaming"); renderReport(text, nLines); }
+    btn.disabled = false; btn.textContent = state.last === rec ? "Analyse again" : "Analyse career fit";
+  }
+});
+
+function renderReport(md, nLines) {
+  const box = $("#report");
+  if (window.marked && window.DOMPurify) {
+    box.innerHTML = DOMPurify.sanitize(marked.parse(md));
+    decorateReport(box, nLines);
+  } else {  // CDN blocked: still show the report, just unformatted
+    box.innerHTML = `<pre style="white-space:pre-wrap;font:13px/1.6 var(--mono);margin:0">${esc(md)}</pre>`;
+  }
+}
+
+// Turn "lines 42-47", bare "42-47" table cells and Stated/Inferred labels into interactive bits.
+const REF_RE = /\b[Ll]ines?\s+\d+(?:\s*[-–]\s*\d+)?(?:\s*(?:,|and|&)\s*\d+(?:\s*[-–]\s*\d+)?)*|\b(?:Stated|Inferred)\b/g;
+const CELL_RE = /^\s*\d+(?:\s*[-–]\s*\d+)?(?:\s*,\s*\d+(?:\s*[-–]\s*\d+)?)*\s*$/;
+function linkNumbers(txt, max) {
+  return esc(txt).replace(/(\d+)(?:\s*[-–]\s*(\d+))?/g, (m, a, b) =>
+    +a >= 1 && +a <= max ? `<a href="#" class="lref" data-a="${a}" data-b="${b || a}">${m}</a>` : m);
+}
+function decorateReport(root, max) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const n of nodes) {
+    if (n.parentElement.closest("code, a")) continue;
+    const t = n.nodeValue;
+    let html;
+    if (n.parentElement.closest("td") && CELL_RE.test(t)) html = linkNumbers(t, max);
+    else {
+      REF_RE.lastIndex = 0;
+      if (!REF_RE.test(t)) continue;
+      let out = "", last = 0;
+      t.replace(REF_RE, (m, off) => {
+        out += esc(t.slice(last, off));
+        out += /^(Stated|Inferred)$/.test(m) ? `<span class="tag ${m.toLowerCase()}">${m}</span>` : linkNumbers(m, max);
+        last = off + m.length;
+      });
+      html = out + esc(t.slice(last));
+    }
+    const span = document.createElement("span");
+    span.innerHTML = html;
+    n.replaceWith(...span.childNodes);
+  }
+}
+$("#report").addEventListener("click", ev => {
+  const a = ev.target.closest("a.lref");
+  if (!a) return;
+  ev.preventDefault();
+  $$(".ln.hit").forEach(x => x.classList.remove("hit"));
+  const from = +a.dataset.a, to = Math.max(from, +a.dataset.b);
+  for (let i = from; i <= to; i++) { const el = $("#L" + i); if (el) el.classList.add("hit"); }
+  const first = $("#L" + from), pane = $("#cvLines");
+  if (!first) return;
+  pane.scrollTo({ top: first.offsetTop - pane.clientHeight / 3, behavior: "smooth" });
+  const box = pane.getBoundingClientRect();
+  if (box.top > innerHeight || box.bottom < 0) pane.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+$("#aCopy").addEventListener("click", async () => {
+  if (!state.report) return;
+  try { await navigator.clipboard.writeText(state.report); $("#aCopy span").textContent = "Copied"; setTimeout(() => $("#aCopy span").textContent = "Copy", 1500); } catch {}
+});
+$("#aDownload").addEventListener("click", () => {
+  if (!state.report) return;
+  const blob = new Blob([state.report], { type: "text/markdown" });
+  const name = $("#jsonTitle").textContent.replace(/\.json$/, "") + `_${state.role}_analysis.md`;
+  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
   a.click(); URL.revokeObjectURL(a.href);
 });
 

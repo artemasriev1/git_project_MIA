@@ -18,6 +18,7 @@ python -m src.extract data/cvs/cv_01.txt
 python -m src.extract data/cvs/ --prompt few_shot
 python -m src.extract data/pdf/          # PDF CVs work too
 python -m src.evaluate
+python -m src.analyst data/cvs/cv_01.txt --role data_analyst  # extract, then write a career report to outputs/analysis/
 pytest                                   # unit tests, no API key needed
 ```
 
@@ -34,11 +35,13 @@ CV2JSON_MOCK=1 python -m web.app     # no key: demo mode, sample CVs only
 
 The page lives in `web/static/index.html`; `web/app.py` calls `src.extract.extract_one`, so the site and the CLI share prompts, retries and schema validation.
 
+After a valid conversion the page offers a **career analysis** (`/api/analyse` → `src.analyst.stream_analysis`): a second call that reads the validated JSON plus the CV numbered line by line (`prompts/analyst.md`) and streams back a Markdown report for the chosen target role (data scientist, data analyst, data engineer, ML engineer, AI engineer; see `ROLES` in `src/analyst.py`). Its claims cite line numbers, clickable on the page. It uses the same key and client; set `CV2JSON_ANALYST_MODEL` to give it a different model. In demo mode it only works for CVs whose analysis was recorded with `CV2JSON_RECORD=1`.
+
 ### Deploying (Render)
 
 `render.yaml` describes the service. On render.com: **New → Blueprint**, pick this repo, deploy. It starts in demo mode (`CV2JSON_MOCK=1`). To convert real CVs, set `ANTHROPIC_API_KEY` in the Render dashboard and change `CV2JSON_MOCK` to `0`.
 
-Once live, every visitor's conversion is billed to that key. `/api/convert` is limited per IP (`CV2JSON_RATE_LIMIT`, default `10 per hour`); also set a monthly spend limit in the Anthropic console.
+Once live, every visitor's conversion is billed to that key. `/api/convert` and `/api/analyse` share one limit per IP (`CV2JSON_RATE_LIMIT`, default `10 per hour`, both calls counted together); also set a monthly spend limit in the Anthropic console.
 
 ## Why an API key and not a local model
 
@@ -47,7 +50,7 @@ We thought about running a model locally with Ollama, which would have skipped t
 ## What is where
 
 - `web/` the Albert Convert website (Flask server + single-page front end)
-- `src/` the code (API call with retry, JSON validation, evaluation)
+- `src/` the code (API call with retry, JSON validation, evaluation, career analyst)
 - `tests/` the pytest suite
 - `prompts/` the prompts, one file per variant
 - `data/cvs/` the test CVs as text, `data/ground_truth/` the correct answers written by hand

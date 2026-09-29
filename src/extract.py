@@ -26,7 +26,7 @@ def load_prompt(name: str) -> str:
     p = PROMPTS / f"{name}.md"
     if not p.exists():
         sys.exit(f"unknown prompt variant {name!r}; available: "
-                 + ", ".join(sorted(x.stem for x in PROMPTS.glob('*.md') if x.stem != 'system')))
+                 + ", ".join(sorted(x.stem for x in PROMPTS.glob('*.md') if x.stem not in ('system', 'analyst'))))
     return p.read_text(encoding="utf-8")
 
 
