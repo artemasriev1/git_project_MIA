@@ -42,7 +42,7 @@ The page also offers a **CV screening audit** (`/api/audit` → `src.auditor.str
 
 ### Deploying (Render)
 
-`render.yaml` describes the service. On render.com: **New → Blueprint**, pick this repo, deploy. It starts in demo mode (`CV2JSON_MOCK=1`). To convert real CVs, set `ANTHROPIC_API_KEY` in the Render dashboard and change `CV2JSON_MOCK` to `0`.
+`render.yaml` describes the service. On render.com: **New → Blueprint**, pick this repo, deploy. Render asks for `ANTHROPIC_API_KEY` and the site runs live (`CV2JSON_MOCK=0`). For a keyless demo that replays the sample CVs, set `CV2JSON_MOCK` to `1` in `render.yaml`, not only in the dashboard: a Blueprint sync overwrites dashboard values for variables the file defines.
 
 Once live, every visitor's conversion is billed to that key. `/api/convert`, `/api/analyse` and `/api/audit` share one limit per IP (`CV2JSON_RATE_LIMIT`, default `10 per hour`, all calls counted together); also set a monthly spend limit in the Anthropic console.
 
