@@ -1,0 +1,15 @@
+{
+  "full_name": "Lucas Moreau",
+  "email": "lucas.moreau@example.fr",
+  "phone": "+33 6 12 34 56 78",
+  "location": "Lyon, France",
+  "years_of_experience": 2,
+  "skills": ["SQL", "Python", "Power BI", "Excel"],
+  "experience": [
+    {"company": "Groupe Casino", "title": "Data Analyst", "start": "2023-01", "end": "present", "highlights": ["Built weekly sales dashboards in Power BI for 40 stores.", "Automated stock reports with SQL and Python, saving 6 hours a week."]},
+    {"company": "Decathlon", "title": "Intern", "start": "2022-03", "end": "2022-08", "highlights": ["Cleaned customer survey data in Excel."]}
+  ],
+  "education": [{"institution": "emlyon business school", "degree": "Master in Business Analytics", "year": 2022}],
+  "languages": [{"language": "French", "level": "native"}, {"language": "English", "level": "C1"}, {"language": "Spanish", "level": "A2"}],
+  "missing_fields": []
+}

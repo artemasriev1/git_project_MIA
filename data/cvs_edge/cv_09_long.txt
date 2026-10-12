@@ -1,0 +1,103 @@
+Daniel Okafor
+London, United Kingdom · daniel.okafor@example.co.uk · +44 7700 900123
+
+Senior software engineer with 14 years of experience building backend systems, data platforms and engineering teams across fintech, e-commerce and healthcare.
+
+PROFESSIONAL EXPERIENCE
+
+Principal Engineer, Monzo, London, 2021-04 – present
+  Lead architect for the payments ledger, processing 30 million transactions a day.
+  Designed the migration from a monolithic Postgres cluster to sharded CockroachDB with zero downtime.
+  Mentor 8 senior engineers and run the backend architecture review board.
+  Introduced event sourcing for account balances, cutting reconciliation errors by 90%.
+  Wrote the internal guidelines for idempotent payment APIs.
+  Partnered with compliance to deliver PSD2 strong customer authentication on time.
+  Reduced p99 latency of the card authorisation path from 180 ms to 45 ms.
+  Led incident response for 3 major outages and authored the post-mortems.
+  Speaker at QCon London 2023 on ledger design.
+
+Engineering Manager, Deliveroo, London, 2018-02 – 2021-03
+  Managed a team of 12 engineers responsible for order dispatch.
+  Grew the team from 4 to 12 through hiring and internal transfers.
+  Shipped the batched-delivery algorithm, increasing rider utilisation by 18%.
+  Owned the quarterly roadmap and OKRs for the dispatch domain.
+  Introduced on-call rotations and runbooks, halving mean time to recovery.
+  Ran the migration of dispatch services from Python 2 to Python 3.
+  Coordinated with data science on demand forecasting models in production.
+  Built a career ladder for backend engineers adopted across the company.
+
+Senior Backend Engineer, Babylon Health, London, 2015-06 – 2018-01
+  Built the appointment booking service used by 2 million patients.
+  Designed HL7 FHIR integrations with NHS GP systems.
+  Implemented audit logging to meet NHS Data Security and Protection Toolkit requirements.
+  Moved deployment from manual scripts to Kubernetes on AWS.
+  Wrote load tests that uncovered a connection-pool bottleneck before launch.
+  Mentored 3 junior engineers through their first year.
+  Contributed to the open-source FHIR validator in Java.
+
+Backend Engineer, ASOS, London, 2012-09 – 2015-05
+  Developed product catalogue APIs in C# and .NET serving 50 million requests a day.
+  Built the search indexing pipeline on Elasticsearch.
+  Improved checkout page response time by 35% through caching.
+  Introduced automated integration tests into the CI pipeline.
+  Worked with the mobile team to design the first public API for the iOS app.
+  Took part in the Black Friday war room for three consecutive years.
+
+Software Developer, Sage Group, Newcastle, 2010-07 – 2012-08
+  Maintained payroll calculation modules for UK small businesses.
+  Implemented RTI (Real Time Information) reporting to HMRC.
+  Fixed rounding bugs in National Insurance calculations.
+  Wrote SQL Server stored procedures for year-end reports.
+  Documented the payroll engine for new joiners.
+
+Graduate Developer, Accenture, Newcastle, 2009-09 – 2010-06
+  Rotated through three client projects in banking and retail.
+  Built internal reporting tools in Java and Oracle.
+  Completed the Accenture graduate technical academy.
+
+EDUCATION
+
+MSc Computer Science, Imperial College London, 2009
+  Thesis: distributed consensus under network partitions.
+  Graduated with distinction.
+
+BEng Electrical and Electronic Engineering, University of Lagos, 2007
+  First class honours.
+
+CERTIFICATIONS
+
+AWS Certified Solutions Architect – Professional, 2020
+Certified Kubernetes Administrator, 2019
+Google Cloud Professional Data Engineer, 2017
+
+TECHNICAL SKILLS
+
+Languages: Go, Python, Java, C#, SQL, Kotlin
+Data: Postgres, CockroachDB, Kafka, Elasticsearch, Redis, BigQuery
+Infrastructure: Kubernetes, Terraform, AWS, GCP, Docker
+Practices: event sourcing, domain-driven design, incident management, technical hiring
+
+PUBLICATIONS AND TALKS
+
+"Designing ledgers that never lose money", QCon London, 2023
+"From monolith to dispatch microservices", Deliveroo Engineering Blog, 2020
+"FHIR in practice", NHS Digital Developer Day, 2017
+
+VOLUNTEERING
+
+Mentor, Code First Girls, 2019 – present
+  Mentor 4 students per cohort on backend fundamentals.
+Trustee, Lagos Tech Foundation, 2016 – present
+  Organise an annual scholarship for engineering students.
+
+LANGUAGES
+
+English (native), Yoruba (native), French (B1)
+
+INTERESTS
+
+Distance running (4 marathons), chess, mentoring, home automation.
+
+REFERENCES
+
+Available on request.

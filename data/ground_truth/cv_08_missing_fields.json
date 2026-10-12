@@ -1,0 +1,14 @@
+{
+  "full_name": "Sofia Lindqvist",
+  "email": null,
+  "phone": null,
+  "location": null,
+  "years_of_experience": null,
+  "skills": ["Canva", "Instagram", "copywriting"],
+  "experience": [
+    {"company": null, "title": null, "start": null, "end": null, "highlights": ["Social media for a local café"]}
+  ],
+  "education": [],
+  "languages": [],
+  "missing_fields": ["email", "phone", "location", "years_of_experience", "education", "languages"]
+}

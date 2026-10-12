@@ -1,0 +1,22 @@
+{
+  "full_name": "Daniel Okafor",
+  "email": "daniel.okafor@example.co.uk",
+  "phone": "+44 7700 900123",
+  "location": "London, United Kingdom",
+  "years_of_experience": 14,
+  "skills": ["Go", "Python", "Java", "C#", "SQL", "Kotlin", "Postgres", "CockroachDB", "Kafka", "Elasticsearch", "Redis", "BigQuery", "Kubernetes", "Terraform", "AWS", "GCP", "Docker", "event sourcing", "domain-driven design", "incident management", "technical hiring"],
+  "experience": [
+    {"company": "Monzo", "title": "Principal Engineer", "start": "2021-04", "end": "present", "highlights": ["Lead architect for the payments ledger, processing 30 million transactions a day.", "Designed the migration from a monolithic Postgres cluster to sharded CockroachDB with zero downtime."]},
+    {"company": "Deliveroo", "title": "Engineering Manager", "start": "2018-02", "end": "2021-03", "highlights": ["Managed a team of 12 engineers responsible for order dispatch.", "Grew the team from 4 to 12 through hiring and internal transfers."]},
+    {"company": "Babylon Health", "title": "Senior Backend Engineer", "start": "2015-06", "end": "2018-01", "highlights": ["Built the appointment booking service used by 2 million patients.", "Designed HL7 FHIR integrations with NHS GP systems."]},
+    {"company": "ASOS", "title": "Backend Engineer", "start": "2012-09", "end": "2015-05", "highlights": ["Developed product catalogue APIs in C# and .NET serving 50 million requests a day.", "Built the search indexing pipeline on Elasticsearch."]},
+    {"company": "Sage Group", "title": "Software Developer", "start": "2010-07", "end": "2012-08", "highlights": ["Maintained payroll calculation modules for UK small businesses.", "Implemented RTI (Real Time Information) reporting to HMRC."]},
+    {"company": "Accenture", "title": "Graduate Developer", "start": "2009-09", "end": "2010-06", "highlights": ["Rotated through three client projects in banking and retail.", "Built internal reporting tools in Java and Oracle."]}
+  ],
+  "education": [
+    {"institution": "Imperial College London", "degree": "MSc Computer Science", "year": 2009},
+    {"institution": "University of Lagos", "degree": "BEng Electrical and Electronic Engineering", "year": 2007}
+  ],
+  "languages": [{"language": "English", "level": "native"}, {"language": "Yoruba", "level": "native"}, {"language": "French", "level": "B1"}],
+  "missing_fields": []
+}
