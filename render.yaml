@@ -12,7 +12,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.12.7
       - key: CV2JSON_MOCK
-        value: "1"            # set to "0" once ANTHROPIC_API_KEY is filled in
+        value: "0"            # live mode; "1" replays data/mock/ without a key. A Blueprint sync overwrites dashboard edits.
       - key: CV2JSON_RATE_LIMIT
         value: "10 per hour"
       - key: ANTHROPIC_API_KEY
